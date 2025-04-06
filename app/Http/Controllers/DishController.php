@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,9 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('dishes.create', compact('categories'));
     }
 
     /**
@@ -29,7 +32,15 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'category_id' => 'integer|required',
+            'cooking_method' => 'required',
+            'cooking_time' => 'required|integer',
+        ]);
+        Dish::create($validated);
+        return redirect()->route('dishes.index');
     }
 
     /**
@@ -48,24 +59,33 @@ class DishController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Dish $dish)
     {
-        //
+        $categories = Category::all();
+        return view('dishes.edit', compact('dish', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Dish $dish)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'category_id' => 'integer|required',
+            'cooking_method' => 'required',
+            'cooking_time' => 'required|integer',
+        ]);
+        $dish->update($validated);
+        return redirect()->route('dishes.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Dish $dish)
     {
-        //
+        $dish->delete();
+        return redirect()->route('dishes.index');
     }
 }

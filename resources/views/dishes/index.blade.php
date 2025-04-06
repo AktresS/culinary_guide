@@ -9,6 +9,7 @@
 </head>
 <body>
 <h2>Список блюд: </h2>
+
 <table border="1">
     <thead>
         <tr>
@@ -16,7 +17,8 @@
             <td>Наименование</td>
             <td>Категория</td>
             <td>Способ приготовления</td>
-            <td>Время приготовления</td>
+            <td>Время <br>приготовления</td>
+            <td>Действия</td>
         </tr>
     </thead>
     @foreach($dishes as $dish)
@@ -26,8 +28,23 @@
             <td>{{$dish->category->name}}</td>
             <td>{{$dish->cooking_method}}</td>
             <td>{{$dish->cooking_time}}</td>
+
+            <td>
+                <a href="{{route('dishes.edit', $dish->id)}}">Редактировать</a>
+
+                <form action="{{route('dishes.destroy', $dish->id)}}" method="post">
+                    @csrf
+                    @method('delete')
+                    <br>
+                    <input type="submit" value="Удалить">
+                </form>
+            </td>
         </tr>
     @endforeach
 </table>
+<br>
+<div>
+    <a href="{{route('dishes.create')}}">Добавить блюдо</a>
+</div>
 </body>
 </html>

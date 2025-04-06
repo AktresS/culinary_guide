@@ -29,6 +29,5 @@
             </tr>
     </table>
 @endif
-
 </body>
 </html>
