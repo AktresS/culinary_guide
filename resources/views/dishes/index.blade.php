@@ -46,5 +46,8 @@
 <div>
     <a href="{{route('dishes.create')}}">Добавить блюдо</a>
 </div>
+<div>
+    {{$dishes->links()}}
+</div>
 </body>
 </html>

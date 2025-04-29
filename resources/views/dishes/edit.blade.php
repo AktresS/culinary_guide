@@ -53,7 +53,7 @@
     <br>
     <div>
         <label>Время приготовления</label>
-        <input type="text" name="cooking_time" value="@if (old('name')) {{old('cooking_time')}} @else {{$dish->cooking_time  }} @endif">
+        <input type="text" name="cooking_time" value="@if (old('cooking_time')) {{old('cooking_time')}} @else {{$dish->cooking_time }} @endif">
         @error('cooking_time')
         <div class="is-invalid">{{$message}}</div>
         @enderror

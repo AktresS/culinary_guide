@@ -11,9 +11,11 @@ class DishController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dishes = Dish::all();
+        $perpage = $request->perpage ?? 2;
+
+        $dishes = Dish::paginate($perpage)->withQueryString();
         return view('dishes.index', compact('dishes'));
     }
 
