@@ -18,8 +18,20 @@
             <tr>
                 <td>{{$category->id}}</td>
                 <td>{{$category->name}}</td>
+
+                <td>
+                    <form action="{{route('categories.destroy', $category->id)}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <br>
+                        <input type="submit" value="Удалить">
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>
+
+    <a href="{{route('categories.create')}}">Создать категорию</a>
+
 </body>
 </html>
