@@ -2,25 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingredient;
+use App\Models\Dish;
 use Illuminate\Http\Request;
 
-class IngredientController extends Controller
+class DishControllerApi extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response(Dish::all());
     }
 
     /**
@@ -34,17 +26,9 @@ class IngredientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ingredient $ingredient)
+    public function show(string $id)
     {
-        return view('ingredients.show', compact('ingredient'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return response(Dish::find($id));
     }
 
     /**

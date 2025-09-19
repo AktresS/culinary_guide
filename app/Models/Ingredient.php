@@ -13,7 +13,7 @@ class Ingredient extends Model
     /**
      * Блюда, принадлежащие ингредиентам
      */
-    public function dish(): BelongsToMany
+    public function dishes(): BelongsToMany
     {
         return $this->belongsToMany(Dish::class, 'recipes')->withPivot('amount');
     }
