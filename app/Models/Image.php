@@ -12,6 +12,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function dishes() : BelongsTo
     {
         return $this->belongsTo(Dish::class);

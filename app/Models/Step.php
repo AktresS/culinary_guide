@@ -10,6 +10,8 @@ class Step extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function dish() : BelongsTo
     {
         return $this->belongsTo(Dish::class);

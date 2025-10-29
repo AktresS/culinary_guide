@@ -33,5 +33,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('delete-category', function (User $user) {
             return $user->role == 1;
         });
+
+        Gate::define('create-dish', function (User $user){
+            return true;
+        });
+
     }
 }

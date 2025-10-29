@@ -9,14 +9,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 
+Route::post('/dishes', [DishControllerApi::class, 'store'])->middleware('auth:sanctum');
 Route::get('/dish/{id}', [DishControllerApi::class, 'show']);
+
 Route::get('/dishes', [DishControllerApi::class, 'index']);
 Route::get('/dishes_total', [DishControllerApi::class, 'total']);
 
 Route::get('/category', [CategoryControllerApi::class, 'index']);
-Route::get('/category/{id}', [CategoryControllerApi::class, 'show']);
 Route::get('/categories_total', [CategoryControllerApi::class, 'total']);
 
+Route::get('/category/{id}', [CategoryControllerApi::class, 'show']);
 Route::get('/ingredient', [IngredientControllerApi::class, 'index']);
 Route::get('/ingredient/{id}', [IngredientControllerApi::class, 'show']);
 
